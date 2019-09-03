@@ -19,7 +19,6 @@ def update(index, item):
 def destroy(index):
     checklist.pop(index)
 
-index = 0
 def list_all_items():
     index = 0
     for list_item in checklist:
@@ -46,19 +45,19 @@ def select(function_code):
 
     # Read item
     elif function_code == "R":
-        item_index = user_input("Index Number?")
+        item_index = user_input("Index Number? ")
 
         # Remember that item_index must actually exist or our program will crash.
-        while (item_index <= index):
+        while type(user_input) == int:
             read(item_index)
         else: print ("not a valid index")
 
-    elif function_code == "U"
+    elif function_code == "U":
         index = user_input("What index?")
         item = user_input("What's the item?")
         update(index, item)
 
-    elif function_code == "D"
+    elif function_code == "D":
         user_input("Which index?")
         destroy(user_input)
 
@@ -86,6 +85,7 @@ def test():
     destroy(1)
 
     print(read(0))
+    #print(read(1))
 
     # Call your new function with the appropriate value
     select("C")
@@ -103,6 +103,7 @@ def test():
     list_all_items()
 
 test()
+
 running = True
 while running:
     selection = user_input(
