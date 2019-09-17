@@ -49,21 +49,25 @@ def select(function_code):
         read(item_index)
         #else: print ("not a valid index")
     #
-    # elif function_code == "U":
-    #     index = user_input("What index?")
-    #     item = user_input("What's the item?")
-    #     update(index, item)
-    #
-    # elif function_code == "D":
-    #     user_input("Which index?")
-    #     destroy(user_input)
+    elif function_code == "U":
+        index = int(user_input("What index? "))
+        item = user_input("What's the item? ")
+        update(index, item)
+
+    elif function_code == "D":
+        index = int(user_input("Which index? "))
+        destroy(index)
 
     # Print all items
     elif function_code == "P":
         list_all_items()
 
-    # elif function_code == "Q":
-    #     return False
+    elif function_code == "Mark Completed":
+        index = int(user_input("Index Number? "))
+        mark_completed(index)
+
+    elif function_code == "Q":
+        return False
 
     # Catch all
     else:
