@@ -8,8 +8,8 @@ def create(item):
 
 #READ
 def read(index):
-    item = checklist[index]
-    return item
+    return checklist[index]
+
 
 #UPDATE
 def update(index, item):
@@ -23,54 +23,56 @@ def list_all_items():
     index = 0
     for list_item in checklist:
         print("{} {}".format(index, list_item))
-        index += 1
+        index +=1
 
 
 def mark_completed(index):
-    return ("√ " + checklist[index])
-
-def user_input(prompt):
-    # the input function will display a message in the terminal
-    # and wait for user input.
-    user_input = input(prompt)
-    return user_input
+    update(index,"√ " + checklist[index])
 
 
 def select(function_code):
 
     # Create item
     if function_code == "C":
-        input_item = user_input("Input item:")
+        input_item = user_input("Input item: ")
         create(input_item)
 
     # Read item
     elif function_code == "R":
-        item_index = user_input("Index Number? ")
-
+        item_index = int(user_input("Index Number? "))
+        print(read(item_index))
         # Remember that item_index must actually exist or our program will crash.
-        while type(user_input) == int:
-            read(item_index)
-        else: print ("not a valid index")
-
-    elif function_code == "U":
-        index = user_input("What index?")
-        item = user_input("What's the item?")
-        update(index, item)
-
-    elif function_code == "D":
-        user_input("Which index?")
-        destroy(user_input)
+        #while type(user_input) == int:
+        read(item_index)
+        #else: print ("not a valid index")
+    #
+    # elif function_code == "U":
+    #     index = user_input("What index?")
+    #     item = user_input("What's the item?")
+    #     update(index, item)
+    #
+    # elif function_code == "D":
+    #     user_input("Which index?")
+    #     destroy(user_input)
 
     # Print all items
     elif function_code == "P":
         list_all_items()
 
-    elif function_code == "Q":
-        return False
+    # elif function_code == "Q":
+    #     return False
 
     # Catch all
     else:
         print("Unknown Option")
+
+    return True
+
+def user_input(prompt):
+    # the input function will display a message in the terminal
+    # and wait for user input.
+    user_input = input(prompt)
+    return user_input
 
 
 def test():
@@ -80,32 +82,20 @@ def test():
     print(read(0))
     print(read(1))
 
-    update(0, "purple socks")
-
+    update(0, "purple sox")
     destroy(1)
 
     print(read(0))
-    #print(read(1))
 
-    # Call your new function with the appropriate value
-    select("C")
-    # View the results
     list_all_items()
-    # Call function with new value
-    select("R")
-    # View results
-    list_all_items()
-    # Continue until all code is run
 
     user_value = user_input("Please Enter a value:")
     print(user_value)
 
-    list_all_items()
-
-test()
+#test()
 
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list and P to display list")
-    select(selection)
+        "Press C to add to list, R to Read from list and P to display list: ")
+    running = select(selection)
