@@ -1,7 +1,10 @@
 #print("Hello world")
+from random import shuffle
 
 checklist = list()
 
+colorsDictionary = ["\033[95m", "\033[92m", "\033[93m", "\033[91m"]
+shuffle(colorsDictionary)
 #CREATE
 def create(item):
     checklist.append(item)
@@ -97,5 +100,5 @@ def test():
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list and P to display list: ")
+        f"{colorsDictionary[0]}Press C to add to list, R to Read from list and P to display list: ")
     running = select(selection)
